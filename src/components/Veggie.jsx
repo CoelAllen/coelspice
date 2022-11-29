@@ -42,10 +42,16 @@ function Veggie() {
         }}>
           {veggie.map((recipe) => {
             return (
-              <SplideSlide key={recipe.id}>
+              <SplideSlide key={recipe.
+// @ts-ignore
+              id}>
                 <Card>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
+                  <p>{recipe.
+// @ts-ignore
+                  title}</p>
+                  <img src={recipe.
+// @ts-ignore
+                  image} alt={recipe.title} />
                   <Gradient/>
                 </Card>
               </SplideSlide>

@@ -17,6 +17,7 @@ function Popular() {
   const getPopular = async () => {
 
     const check = localStorage.getItem('popular');
+    
     if(check){
       setPopular(JSON.parse(check))
       // localStorage can only save strings, this puts it back into an array!

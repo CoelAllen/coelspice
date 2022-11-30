@@ -23,12 +23,14 @@ function Recipe() {
         <img src={details.image} alt={details.name}/>
       </div>
       <Info>
+        <div>
         <Button className={activeTab==='instructions' ? 'active' : ''} onClick={()=> setActiveTab('instructions')}>Instructions</Button>
         <Button className={activeTab==='ingredients' ? 'active' : ''} onClick={()=> setActiveTab('ingredients')}>Ingredients</Button>
+        </div>
         {activeTab === 'instructions' && (
-        <div>
-          <h3 dangerouslySetInnerHTML={{__html: details.summary}}></h3>
-          <h3 dangerouslySetInnerHTML={{__html: details.instructions}}></h3>
+          <div>
+          <h4 dangerouslySetInnerHTML={{__html: details.summary}}></h4>
+          <h5 dangerouslySetInnerHTML={{__html: details.instructions}}></h5>
         </div>
         )}
         {activeTab === 'ingredients' && (
@@ -72,5 +74,11 @@ const Button = styled.button`
 `
 const Info = styled.div`
   margin-left: 10rem;
+  div{
+    margin-bottom: 2rem;
+  }
+  h5{
+    margin-top: 1rem;
+  }
 `
 export default Recipe

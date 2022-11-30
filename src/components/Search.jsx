@@ -26,9 +26,12 @@ function Search() {
 
 const FormStyle = styled.form`
   margin: 0rem 20rem;
+  margin-top: 5rem;
   div {
     width: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
 
   }
   input{

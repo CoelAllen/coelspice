@@ -17,13 +17,16 @@ function Recipe() {
   const [activeTab, setActiveTab] = useState('instructions')
 
   const fetchDetails = async () => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${name}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
-    const detailData = await data.json();
-    setDetails(detailData)
+    await fetch(`https://api.spoonacular.com/recipes/${name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+    ).then((res)=> res.json().then(({detailData})=>{
+      setDetails(detailData)
+    }))
   }
+  
   useEffect(()=>{
     fetchDetails()
   },[name])
+  
   return (
     <DetailWrapper
       animate={{opacity: 1}}
@@ -37,22 +40,28 @@ function Recipe() {
       </div>
       <Info>
         <div>
-        <Button className={activeTab==='instructions' ? 'active' : ''} onClick={()=> setActiveTab('instructions')}>Instructions</Button>
-        <Button className={activeTab==='ingredients' ? 'active' : ''} onClick={()=> setActiveTab('ingredients')}>Ingredients</Button>
+          <Button 
+            className={activeTab==='instructions' ? 'active' : ''} 
+            onClick={()=> setActiveTab('instructions')}
+          >Instructions</Button>
+          <Button 
+            className={activeTab==='ingredients' ? 'active' : ''} 
+            onClick={()=> setActiveTab('ingredients')}
+          >Ingredients</Button>
         </div>
-        {activeTab === 'instructions' && (
-          <div>
-          <h4 dangerouslySetInnerHTML={{__html: details.summary}}></h4>
-          <h5 dangerouslySetInnerHTML={{__html: details.instructions}}></h5>
-        </div>
-        )}
-        {activeTab === 'ingredients' && (
-        <ul>
-          {details.extendedIngredients.map(({id, original}) => 
-            <li key={id}>{original}</li>
+          {activeTab === 'instructions' && (
+            <div>
+              <h4 dangerouslySetInnerHTML={{__html: details.summary}}></h4>
+              <h5 dangerouslySetInnerHTML={{__html: details.instructions}}></h5>
+            </div>
           )}
-        </ul>
-        )} 
+          {activeTab === 'ingredients' && (
+            <ul>
+              {details.extendedIngredients.map(({id, original}) => 
+                <li key={id}>{original}</li>
+              )}
+            </ul>
+          )} 
       </Info>
     </DetailWrapper>
   )

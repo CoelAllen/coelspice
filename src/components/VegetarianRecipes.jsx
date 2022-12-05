@@ -14,10 +14,10 @@ function VegetarianRecipes() {
   // empty array is where you would trigger the action such as [search], to run where there is a search result
 
   const getVegRecipes = async () => {
-    const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`)
-    const data = await api.json();
-    setVegRecipe(data.recipes);
-    console.log(data.recipes)
+    await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
+    ).then((res)=> res.json().then(({recipes})=>{
+      setVegRecipe(recipes)
+    }))
    }
   return (
     <div>

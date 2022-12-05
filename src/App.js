@@ -1,10 +1,10 @@
 import React from "react";
 import Pages from "./pages/Pages.jsx";
-import Category from "./components/Category.jsx";
 import { BrowserRouter, Link } from "react-router-dom";
 import Search from "./components/Search.jsx";
 import styled from "styled-components";
 import { GiKnifeFork } from "react-icons/gi";
+import Categories from "./components/Categories.jsx";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Logo to={"/"}>Delicious</Logo>
         </Nav>
         <Search />
-        <Category />
+        <Categories />
         <Pages />
       </BrowserRouter>
     </div>

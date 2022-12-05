@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 import React from 'react'
 
-function Category() {
+function Categories() {
   return (
     <List>
       <SLink to={'/cuisine/Italian'}>
@@ -66,4 +66,4 @@ svg{
 }
 `;
 
-export default Category
+export default Categories

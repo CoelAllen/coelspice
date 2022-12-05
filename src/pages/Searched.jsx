@@ -25,13 +25,13 @@ function Searched() {
       exit={{ opacity: 0 }}
       transition={{duration: 0.5}}
     >
-      {searchedRecipes.map((item)=>{
+      {searchedRecipes.map(({id, image, title, name})=>{
         return(
-          <Card key={item.id}>
-            <Link to={'/recipe/' + item.id}>
+          <Card key={id}>
+            <Link to={'/recipe/' + id}>
 
-             <img src={item.image} alt={item.name}/>
-             <h4>{item.title}</h4>
+             <img src={image} alt={name}/>
+             <h4>{title}</h4>
             </Link>
           </Card>
         )

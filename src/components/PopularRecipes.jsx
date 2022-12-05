@@ -36,14 +36,14 @@ function PopularRecipes() {
           drag: 'free',
           gap: '5rem',
         }}>
-          {popular.map((recipe) => {
+          {popular.map(({id, title, image}) => {
             return (
-              <SplideSlide key={recipe.id}>
-                <Card>
+                  <SplideSlide key={id}>
+              <Card>
 
-                <Link to={"/recipe/" + recipe.id}>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
+                <Link to={"/recipe/" + id}>
+                  <p>{title}</p>
+                  <img src={image} alt={title} />
                   <Gradient/>
                 </Link>
                 </Card>

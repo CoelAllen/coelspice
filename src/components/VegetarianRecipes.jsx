@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function VegetarianRecipes() {
 
-  const [veggie, setVeggie] = useState([]);
+  const [vegRecipe, setVegRecipe] = useState([]);
 
   useEffect(() => {
     getVegRecipes();
@@ -16,7 +16,7 @@ function VegetarianRecipes() {
   const getVegRecipes = async () => {
     const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`)
     const data = await api.json();
-    setVeggie(data.recipes);
+    setVegRecipe(data.recipes);
     console.log(data.recipes)
    }
   return (
@@ -30,13 +30,13 @@ function VegetarianRecipes() {
           drag: 'free',
           gap: '5rem',
         }}>
-          {veggie.map((recipe) => {
+          {vegRecipe.map(({id, title, image}) => {
             return (
-              <SplideSlide key={recipe.id}>
+              <SplideSlide key={id}>
                 <Card>
-                  <Link to={'/recipe/' + recipe.id}>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
+                  <Link to={'/recipe/' + id}>
+                  <p>{title}</p>
+                  <img src={image} alt={title} />
                   <Gradient/>
                   </Link>
                 </Card>

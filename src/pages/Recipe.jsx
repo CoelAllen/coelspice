@@ -5,18 +5,25 @@ import { useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 function Recipe() {
-  let params = useParams()
-  const [details, setDetails] = useState({})
+  let { name } = useParams()
+  const [details, setDetails] = useState({
+    image: "", 
+    title:"", 
+    name:"", 
+    summary:"", 
+    instructions:"", 
+    extendedIngredients:[]
+  })
   const [activeTab, setActiveTab] = useState('instructions')
 
   const fetchDetails = async () => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
+    const data = await fetch(`https://api.spoonacular.com/recipes/${name}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
     const detailData = await data.json();
     setDetails(detailData)
   }
   useEffect(()=>{
     fetchDetails()
-  },[params.name])
+  },[name])
   return (
     <DetailWrapper
       animate={{opacity: 1}}
@@ -41,8 +48,8 @@ function Recipe() {
         )}
         {activeTab === 'ingredients' && (
         <ul>
-          {details.extendedIngredients.map((ingredient) => 
-            <li key={ingredient.id}>{ingredient.original}</li>
+          {details.extendedIngredients.map(({id, original}) => 
+            <li key={id}>{original}</li>
           )}
         </ul>
         )} 

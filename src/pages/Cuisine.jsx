@@ -27,12 +27,12 @@ function Cuisine() {
       exit={{ opacity: 0 }}
       transition={{duration: 0.5}}
     >
-      {cuisine.map((item) =>{
+      {cuisine.map(({id, image, title}) =>{
         return (
-          <Card key={item.id}>
-            <Link to={'/recipe/' + item.id}>
-            <img src={item.image} alt={item.title} />
-            <h4>{item.title}</h4>
+          <Card key={id}>
+            <Link to={'/recipe/' + id}>
+            <img src={image} alt={title} />
+            <h4>{title}</h4>
             </Link>
           </Card>
         )

@@ -9,11 +9,13 @@ function Cuisine() {
   // NOTE this enables getting the name for the below link from the URL, we set it to ":type" on Pages.jsx so if we log params we get {type: 'whatever page we're on'}
 
   const getCuisine = async (name) => {
-    const data = await fetch(
+    await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+    ).then((res) =>
+      res.json().then(({ recipes }) => {
+        setCuisine(recipes.results);
+      })
     );
-    const recipes = await data.json();
-    setCuisine(recipes.results);
   };
   useEffect(() => {
     getCuisine(params.type);
